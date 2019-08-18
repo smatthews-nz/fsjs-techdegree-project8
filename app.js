@@ -15,13 +15,16 @@ app.use('/static', express.static('public'));
 ROUTING-------------------------------//
 */
 //setting the route for index
-const index = require('./routes/index')
+const index = require('./routes/index');
 app.use(index);
 
 //setting the route for /books
 const books = require('./routes/books');
 app.use(books);
 
+//setting the route for creating new books
+const newBooks = require('./routes/newBook');
+app.use(newBooks);
 
 //set the app to listen to port 3000
 app.listen(port, () =>  {
