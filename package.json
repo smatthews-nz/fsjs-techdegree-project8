@@ -1,0 +1,25 @@
+{
+  "name": "fsjs-techdegree-project8",
+  "version": "1.0.0",
+  "description": "A Library CRUD front end, managing an SQL database using Node.js, Sequelize, and Pug.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smatthews-nz/fsjs-techdegree-project8.git"
+  },
+  "author": "Sam Matthews",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smatthews-nz/fsjs-techdegree-project8/issues"
+  },
+  "homepage": "https://github.com/smatthews-nz/fsjs-techdegree-project8#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pug": "^2.0.4",
+    "sequelize": "^5.15.0",
+    "sqlite3": "^4.1.0"
+  }
+}
