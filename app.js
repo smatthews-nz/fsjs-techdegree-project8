@@ -11,6 +11,7 @@ app.set('view engine', 'pug');
 
 //serve static assets
 app.use('/static', express.static('public'));
+
 /*
 ROUTING-------------------------------//
 */
