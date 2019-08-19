@@ -40,6 +40,8 @@ router.post('/books/new', (req, res, next) => {
 
     })();
     
+    //once a user has added a book, redirect to the books page
+    res.send({redirect: '/books'});
 })
 
 module.exports = router;
