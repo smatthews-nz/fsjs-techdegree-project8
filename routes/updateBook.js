@@ -26,3 +26,5 @@ router.get('/book/:id', (req, res) => {
     res.render('update-book', book);
 
 });
+
+module.exports = router;
