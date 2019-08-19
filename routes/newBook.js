@@ -16,7 +16,6 @@ router.get('/books/new', (req,res) => {
 });
 
 router.post('/books/new', (req, res, next) => {
-    res.send('Post route active');
     (async () => {
         // get all variables needed to build our books
         const title = req.body.title;
@@ -32,7 +31,7 @@ router.post('/books/new', (req, res, next) => {
                 year
             })
             .then( () => {
-                console.log('Done!');
+                res.redirect('/books');
             })
         } catch (error) {
             console.error('Error adding to the database', error);
@@ -40,8 +39,6 @@ router.post('/books/new', (req, res, next) => {
 
     })();
     
-    //once a user has added a book, redirect to the books page
-    res.send({redirect: '/books'});
 })
 
 module.exports = router;
