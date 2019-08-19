@@ -9,7 +9,7 @@ const sequelize = new Sequelize({
 const db ={
     sequelize,
     Sequelize,
-    models:{}
+    models:{  }
 }
 
 //define model

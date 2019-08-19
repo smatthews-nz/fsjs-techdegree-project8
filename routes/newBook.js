@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 //require db
 const db = require('../db');
+const { Book } = db.models;
 
 //use express JSON parser
 router.use(express.json());
@@ -16,23 +17,29 @@ router.get('/books/new', (req,res) => {
 
 router.post('/books/new', (req, res, next) => {
     res.send('Post route active');
-    
-    // get all variables needed to build our books
-    const title = req.body.title;
-    const author = req.body.author;
-    const genre = req.body.genre;
-    const year = req.body.year;
-    console.log(req.body)
-    res.json(req.body);
+    (async () => {
+        // get all variables needed to build our books
+        const title = req.body.title;
+        const author = req.body.author;
+        const genre = req.body.genre;
+        const year = req.body.year;
+        
+        try {
+            await  Book.create({
+                title,
+                author,
+                genre,
+                year
+            })
+            .then( () => {
+                console.log('Done!');
+            })
+        } catch (error) {
+            console.error('Error adding to the database', error);
+        }
 
-    db.models.create({
-        title,
-        author,
-        genre,
-        year
-    })
+    })();
     
-
 })
 
 module.exports = router;
