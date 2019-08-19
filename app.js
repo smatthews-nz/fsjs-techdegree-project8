@@ -27,6 +27,10 @@ app.use(books);
 const newBooks = require('./routes/newBook');
 app.use(newBooks);
 
+//setting the route for updating books
+const updateBook = require('./routes/updateBook');
+app.use(updateBook);
+
 //set the app to listen to port 3000
 app.listen(port, () =>  {
     console.log('Project is running on port 3000')
