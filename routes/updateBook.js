@@ -11,19 +11,19 @@ let book;
 
 
 //add routing for book:id
-router.get('/book/:id', (req, res) => {
+router.get('/book/:index', (req, res) => {
     //async method to do a sequelize query for the book id.
     (async () => {
         try {
-            book = await Book.findAll({
-                where: { id: req.params.id }
-            })
+            book = await Book.findByPk(req.params.index)
+            
         } catch(error){
             console.error('Error fetching book', error);
         }
     })();
 
-    res.render('update-book', book);
+    
+    res.render('update-book', {book});
 
 });
 
