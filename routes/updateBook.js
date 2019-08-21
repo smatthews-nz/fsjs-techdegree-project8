@@ -16,14 +16,14 @@ router.get('/book/:index', (req, res) => {
     (async () => {
         try {
             book = await Book.findByPk(req.params.index)
-            
+            res.render('update-book', {book});
         } catch(error){
             console.error('Error fetching book', error);
         }
     })();
 
     
-    res.render('update-book', {book});
+    
 
 });
 
