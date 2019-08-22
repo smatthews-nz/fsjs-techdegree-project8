@@ -12,10 +12,10 @@ router.use (express.urlencoded({extended: false}))
 
 //add routing for new book form
 router.get('/books/new', (req,res) => {
-    res.render('newBook');
+    res.render('new-book');
 });
 
-router.post('/books/new', (req, res, next) => {
+router.post('/books/new', (req, res) => {
     (async () => {
         // get all variables needed to build our books
         const title = req.body.title;

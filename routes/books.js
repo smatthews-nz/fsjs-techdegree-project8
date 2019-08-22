@@ -9,17 +9,19 @@ const { Book } = db.models;
 //declare the book variable
 let books;
 
-(async () => {
-    try {
-        //initialize books variable to a sequelize query, finding all books
-      books = await Book.findAll();
-    } catch (error){
-        console.error('Error connecting to the database: ', error);
-    }
-})();
+
 //render the template with all books
 router.get('/books', (req, res) => {
-    res.render('index', {books});
+
+    (async () => {
+        try {
+            //initialize books variable to a sequelize query, finding all books
+          books = await Book.findAll();
+          res.render('index', {books});
+        } catch (error){
+            console.error('Error connecting to the database: ', error);
+        }
+    })();
 
 })
 
