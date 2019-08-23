@@ -31,6 +31,29 @@ app.use(newBooks);
 const updateBook = require('./routes/updateBook');
 app.use(updateBook);
 
+/*
+ERROR HANDLING-------------------------------//
+*/
+//middleware to handle any errors
+app.use((req, res, next) => {
+    const error = new Error('Sorry, URL not found');
+    error.status = 404;
+    console.error(error)
+    next(error);
+});
+
+//if non-matching error
+app.use((err, req, res, next) => {
+    res.locals.error = err;
+    res.status(err.status);
+    res.render('page-not-found');
+    console.error(err);
+});
+/*
+END OF ERROR HANDLING-------------------------------//
+*/
+
+
 //set the app to listen to port 3000
 app.listen(port, () =>  {
     console.log('Project is running on port 3000')
