@@ -34,7 +34,26 @@ router.post('/books/new', (req, res) => {
                 res.redirect('/books');
             })
         } catch (error) {
-            console.error('Error adding to the database', error);
+            //catch sequelize error
+            if(error.name === 'SequelizeValidationError'){
+                const errors = error.errors.map( err => err.message);
+                console.error('Missing information: ', errors)
+
+                //keep book data entered by user so we can the pass errors
+                const bookData ={
+                    id: req.params.id,
+                    title: req.body.title,
+                    author: req.body.author,
+                    genre: req.body.genre,
+                    year: req.body.year
+                };
+
+                //render the template, passing the book data and errors.
+                res.render('new-book', {bookData, errors})
+            } else {
+                //if not sequelize error then res error template
+                res.render('error')
+            }
         }
 
     })();
