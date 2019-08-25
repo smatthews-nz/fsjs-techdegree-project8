@@ -1,7 +1,9 @@
 extends layout.pug
-
+block title
+    Title=`Book details`
 block content
     h1 Update Book
+    include form_error
     form(method="post" action=`/book/${book.id}`)
         p
             label(for="title") Title

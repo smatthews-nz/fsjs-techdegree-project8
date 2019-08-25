@@ -39,7 +39,6 @@ ERROR HANDLING-------------------------------//
 app.use((req, res, next) => {
     const error = new Error('Sorry, URL not found');
     error.status = 404;
-    console.error(error)
     next(error);
 });
 
@@ -48,7 +47,6 @@ app.use((err, req, res, next) => {
     res.locals.error = err;
     res.status(err.status);
     res.render('page-not-found');
-    console.error(err);
 });
 /*
 END OF ERROR HANDLING-------------------------------//

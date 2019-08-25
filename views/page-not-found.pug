@@ -1,7 +1,10 @@
 extends layout.pug
-
+block title
+    title Page Not Found
 block content
     div.error-404
         h1 Page Not Found
         p Sorry, we couldn't find the page you were looking for.
         i.material-icons.md-48.icon-align remove_circle_outline
+        p
+            a.button.home-btn(href='/') Home

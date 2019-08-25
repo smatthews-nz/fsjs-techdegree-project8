@@ -100,4 +100,8 @@ input[type=text] {
  text-align: center;
 }
 
-.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-48 { 
+  font-size: 48px;
+  padding-top: 25px;
+  padding-bottom: 25px; 
+}

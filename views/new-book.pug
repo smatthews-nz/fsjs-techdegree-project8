@@ -1,7 +1,9 @@
 extends layout.pug
-
+block title
+    title Add a new book
 block content
     h1 New Book
+    include form_error
     form(method="post" action="/books/new")
         p
             label(for="title") Title
