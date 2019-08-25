@@ -95,3 +95,9 @@ input[type=text] {
 .error {
   color: rgb(236, 15, 15);
 }
+
+.error-404{
+ text-align: center;
+}
+
+.material-icons.md-48 { font-size: 48px; }
