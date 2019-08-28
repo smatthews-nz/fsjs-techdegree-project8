@@ -7,27 +7,15 @@ block content
     form(method="post" action="/books/new")
         p
             label(for="title") Title
-            if bookData.title
-            input(type="text", name="title", id="title" value=bookData.title)
-            else
             input(type="text", name="title", id="title") 
         p
             label(for="author") Author
-            if bookData.author
-            input(type="text", name="author", id="author" value=bookData.author)
-            else
             input(type="text", name="author", id="author")
         p
             label(for="genre") Genre
-            if bookData.genre
-            input(type="text", name="genre", id="genre" value=bookData.genre)
-            else
             input(type="text", name="genre", id="genre")
         p
             label(for="year") Year
-            if bookData.year
-            input(type="text", name="year", id="year" value=bookData.year)
-            else
             input(type="text", name="year", id="year")
         p
             input(type="submit", value="Create new book")

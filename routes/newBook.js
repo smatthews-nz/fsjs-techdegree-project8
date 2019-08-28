@@ -12,7 +12,13 @@ router.use (express.urlencoded({extended: false}))
 
 //add routing for new book form
 router.get('/books/new', (req,res) => {
-    res.render('new-book');
+    try{
+        res.render('new-book');
+    } catch (error){
+        error.status = 500;
+        error.message = "Oops! Internal server error. Sorry!";
+        next(error);
+    }
 });
 
 router.post('/books/new', (req, res) => {
@@ -31,28 +37,19 @@ router.post('/books/new', (req, res) => {
                 year
             })
             .then( () => {
-                res.redirect('/books');
+                res.redirect(`/books/`);
             })
         } catch (error) {
             //catch sequelize error
             if(error.name === 'SequelizeValidationError'){
-                const errors = error.errors.map( err => err.message);
-                console.error('Missing information: ', errors)
-
-                //keep book data entered by user so we can the pass errors
-                const bookData ={
-                    id: req.params.id,
-                    title: req.body.title,
-                    author: req.body.author,
-                    genre: req.body.genre,
-                    year: req.body.year
-                };
-
-                //render the template, passing the book data and errors.
-                res.render('new-book', {bookData, errors})
+                const errors = error.errors
+                res.render('new-book', {errors})
             } else {
                 //if not sequelize error then res error template
-                res.render('error')
+                console.error(error)
+                error.status = 500;
+                error.message = "Book could not bed added to the library database"
+                next(error);
             }
         }
 
