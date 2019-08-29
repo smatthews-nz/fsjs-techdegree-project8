@@ -38,8 +38,8 @@ router.post('/books/new', (req, res) => {
                 genre,
                 year
             })
-            
-            res.redirect(`/books/${book.id}`);
+            console.log(book)
+            res.redirect(`/book/${book.dataValues.id}`);
             
         } catch (error) {
             //catch sequelize error
