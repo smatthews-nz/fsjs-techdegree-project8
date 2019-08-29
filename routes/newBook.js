@@ -24,21 +24,23 @@ router.get('/books/new', (req,res) => {
 router.post('/books/new', (req, res) => {
     (async () => {
         // get all variables needed to build our books
+        const id = req.params.id;
         const title = req.body.title;
         const author = req.body.author;
         const genre = req.body.genre;
         const year = req.body.year;
         
         try {
-            await  Book.create({
+            const book = await Book.create({
+                id,
                 title,
                 author,
                 genre,
                 year
             })
-            .then( () => {
-                res.redirect(`/books/`);
-            })
+            
+            res.redirect(`/books/${book.id}`);
+            
         } catch (error) {
             //catch sequelize error
             if(error.name === 'SequelizeValidationError'){
