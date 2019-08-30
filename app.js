@@ -39,13 +39,15 @@ ERROR HANDLING-------------------------------//
 app.use((req, res, next) => {
     const error = new Error('Sorry, URL not found');
     error.status = 404;
-    next(error);
+    res.status(error.status);
+    res.render('page-not-found');
 });
 
 //if non-matching error
 app.use((err, req, res, next) => {
-    res.locals.error = err;
-    res.status(err.status);
+    const error = new Error('Sorry, URL not found');
+    error.status = 404;
+    res.status(error.status);
     res.render('page-not-found');
 });
 /*
